@@ -1,0 +1,31 @@
+body {
+    background: #222;
+}
+
+.preso {
+    background: #222;
+}
+
+.slide {
+    border: none;
+    background: #222;
+    color: #ddd;
+}
+
+.slide h1 {
+    color: #69a;
+}
+
+#footer {
+    background: #222;
+    color: #666;
+}
+
+a:link {
+    color: #369;
+}
+
+a:visited {
+    text-decoration: none;
+    color: #369;
+}
