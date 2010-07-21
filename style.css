@@ -29,3 +29,8 @@ a:visited {
     text-decoration: none;
     color: #369;
 }
+
+pre.sh_sourceCode {
+    background-color: #ccc;
+}
+
