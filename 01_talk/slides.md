@@ -4,7 +4,7 @@
 
 ## Lennon Day-Reynolds ##
 ## Dark Horse Comics ##
-## [lennond@darkhorse.com](mailto:lennond@darkhorse.com) :: [http://rcoder.net/](http://rcoder.net/) ##
+## @rcoder :: http://rcoder.net/
 
 
 !SLIDE bullets incremental
@@ -12,7 +12,7 @@
 # Goals #
 
 * Language history
-* Recognize patterns
+* Useful patterns
 * Hope
 
 
@@ -29,8 +29,8 @@
 
 # History, cont. #
 
-* MS won an effective browser monopoly
-* JS stagnated while they built C# and the CLR
+* IE won an effective browser monopoly
+* JS stagnated while MS built C# and the CLR
 * ...and then, Oddpost + GMail made it important again
 
 
@@ -45,30 +45,54 @@
 
 !SLIDE bullets incremental
 
+# JavaScript functions #
+
+* Executable code
+* Lexical environment
+* First-class objects
+
+
+!SLIDE bullets incremental
+
 # Function.prototype = Scheme
 
-* Built at MIT 1975-80, standardized in RnRS specs (R5RS was 1998)
+* Built at MIT 1975-80, standardized in RnRS specs
 * Clean, research-oriented dialect of Lisp
 * Functions are first-class values
-* Structure programs by passing _continuation_ functions
+* Programs operate on themselves
 
 
 !SLIDE 
 
 # Scheme example
 
-    (define (adder i)
-        (lambda (x) (+ x i)))
+    (define (make-greeter msg)
+        (lambda (s) 
+            (string-append msg s)))
 
+    (define yo-greeter (make-greeter "Yo "))
 
 !SLIDE
 
 # ...in Javascript
 
     @@@JavaScript
-    var adder = function(i) {
-        return function(x) { return x + i; }
-    };
+    var makeGreeter = function(msg) {
+        return function(s) {
+            return msg + s;
+        }
+    }
+
+    var yoGreeter = makeGreeter("Yo ");
+
+
+!SLIDE bullets incremental
+
+# Other similarities #
+
+* weak standard library
+* many (incompatible) implementations
+* considered a "toy language" by many programmers
 
 
 !SLIDE bullets incremental
@@ -76,8 +100,8 @@
 # JavaScript Objects #
 
 * Namespace
+* Attributes
 * Prototype
-* "Open" by default
 
 
 !SLIDE bullets incremental
@@ -86,8 +110,8 @@
 
 * Built at PARC, released by Sun in 1990 
 * Objects have slots
-* Slots may be data, methods, or parents
-* All interaction is via message-passing
+* Slots contain data or methods
+* _All_ interaction is via message-passing
 
 
 !SLIDE bullets incremental
@@ -114,9 +138,9 @@
 
 # Prototypes in JavaScript #
 
-* Is-a vs. has-a
 * JavaScript objects have at most one prototype
 * DOM nodes inherit properties from containers
+* "is-a" vs. "is-in"
 
 
 !SLIDE
@@ -207,6 +231,8 @@
         this.getValue() {
             return value;
         }
+
+        return this;
     }
 
 
@@ -229,6 +255,7 @@
 # Why jQuery rocks #
 
 * Finally, a standard library for JavaScript
+* Encourages good habits
 * Uses Self-like slots with getters/setters
 * Bind simple callback functions, rather than classes
 
@@ -246,7 +273,7 @@
 # JavaScript.next() #
 
 * Concurrency
-* Better Syntax
+* New Syntax
 
 
 !SLIDE bullets incremental
