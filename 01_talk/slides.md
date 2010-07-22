@@ -9,10 +9,20 @@
 
 !SLIDE bullets incremental
 
+# Goals #
+
+* Language history
+* Recognize patterns
+* Hope
+
+
+!SLIDE bullets incremental
+
 # History #
 
 * Created as LiveScript by Brendan Eich in 1995
 * Renamed + recast in a supporting role for Java
+* Used to build roll-overs, animated text, other annoyances
 
 
 !SLIDE bullets incremental
@@ -37,6 +47,7 @@
 
 # JavaScript.prototype = Scheme
 
+* Built at MIT 1975-80, standardized in RnRS specs (R5RS was 1998)
 * Clean, research-oriented dialect of Lisp
 * Functions are first-class values
 * Structure programs by passing _continuation_ functions
@@ -73,7 +84,7 @@
 
 # JavaScript.prototype = Self
 
-* Released in 1990
+* Built at PARC, released by Sun in 1990 
 * Objects have slots
 * Slots may be data, methods, or parents
 * All interaction is via message-passing
