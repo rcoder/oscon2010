@@ -38,14 +38,14 @@
 
 # What is JavaScript? #
 
-* Objects
 * Functions
+* Objects
 * Core types: Object, Array, RegExp, Date, etc.
 
 
 !SLIDE bullets incremental
 
-# JavaScript.prototype = Scheme
+# Function.prototype = Scheme
 
 * Built at MIT 1975-80, standardized in RnRS specs (R5RS was 1998)
 * Clean, research-oriented dialect of Lisp
@@ -82,7 +82,7 @@
 
 !SLIDE bullets incremental
 
-# JavaScript.prototype = Self
+# Object.prototype = Self
 
 * Built at PARC, released by Sun in 1990 
 * Objects have slots
@@ -105,7 +105,7 @@
 # Self example #
 
 <p style="text-align:center">
-    <img src="/bank2.gif"/><br/><br/>
+    <img src="bank12.gif"/><br/><br/>
     <small>(Image copyright &copy; Oracle Corp.)</small>
 </p>
 
@@ -166,14 +166,35 @@
     </script>
 
 
-!SLIDE
+!SLIDE bullets incremental
 
 # How I got better
 
+* Write JavaScript like its weird parents
+
 
 !SLIDE
 
-# Closures #
+# Read these books #
+
+<p style="text-align: center;">
+    <img src="javascript.gif"/>
+    <img src="jquery.jpg"/>
+</p>
+
+
+!SLIDE bullets incremental
+
+# Ruthlessly cull bad code
+
+* <s>eval</s>
+* <s>with</s>
+* <s>globals</s>
+
+
+!SLIDE
+
+# Use more closures #
 
     @@@ JavaScript
     function Counter() {
@@ -191,10 +212,9 @@
 
 !SLIDE
 
-# How I got better, cont. #
+# Use jQuery #
 
     @@@ JavaScript
-    // Yay for jQuery!
     $(".required-field").blur(function() {
         var me = $(this);
         var value = me.val();
