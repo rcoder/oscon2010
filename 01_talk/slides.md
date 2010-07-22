@@ -35,6 +35,33 @@
 
 !SLIDE bullets incremental
 
+# JavaScript.prototype = Scheme
+
+* Clean, research-oriented dialect of Lisp
+* Functions are first-class values
+* Structure programs by passing _continuation_ functions
+
+
+!SLIDE 
+
+# Scheme example
+
+    (define (adder i)
+        (lambda (x) (+ x i)))
+
+
+!SLIDE
+
+# ...in Javascript
+
+    @@@JavaScript
+    var adder = function(i) {
+        return function(x) { return x + i; }
+    };
+
+
+!SLIDE bullets incremental
+
 # JavaScript Objects #
 
 * Namespace
@@ -66,7 +93,19 @@
 
 # Self example #
 
-![Self source](http://labs.oracle.com/self/release_4.0/Self-4.0/Tutorial/Images/Bank/bank2.gif)
+<p style="text-align:center">
+    <img src="/bank2.gif"/><br/><br/>
+    <small>(Image copyright &copy; Oracle Corp.)</small>
+</p>
+
+
+!SLIDE bullets incremental
+
+# Prototypes in JavaScript #
+
+* Is-a vs. has-a
+* JavaScript objects have at most one prototype
+* DOM nodes inherit properties from containers
 
 
 !SLIDE
@@ -92,14 +131,6 @@
 
 !SLIDE bullets incremental
 
-# JavaScript.prototype = Lisp
-
-* Functions are first-class values
-* Structure programs by passing _continuation_ functions
-
-
-!SLIDE bullets incremental
-
 # A personal confession #
 
 * I _hated_ Javascript for many years
@@ -110,53 +141,86 @@
 # Why I hated JavaScript #
 
     @@@ HTML
+    <!-- mixing markup and code -->
     <input name="first_name" type="text" 
         onchange="return 
             checkField(this,'required field')"/>
 
-    <a href="javascript:
-        displayAnnoyingDialog('hello!')"/>
+    <script>
+        // globals, globals, everywhere
+        globalElem = 
+            document.getElementById('#an-elem');
+
+        processGlobalElem();
+    </script>
 
 
 !SLIDE
 
-# jQuery #
+# How I got better
+
+
+!SLIDE
+
+# Closures #
 
     @@@ JavaScript
+    function Counter() {
+        var value = 0;
+
+        this.incr = function() {
+            value += 1;
+        }
+
+        this.getValue() {
+            return value;
+        }
+    }
+
+
+!SLIDE
+
+# How I got better, cont. #
+
+    @@@ JavaScript
+    // Yay for jQuery!
     $(".required-field").blur(function() {
-        var value = $(this).val();
+        var me = $(this);
+        var value = me.val();
         if (!value) {
-            $(this).append("<span 
-                class='req-msg'>
-                    * required field
-                </span>");
-            }
+            me.append("<em>* required</em>");
         }
     });
 
 
 !SLIDE bullets incremental
 
-# jQuery, cont. #
+# Why jQuery rocks #
 
 * Finally, a standard library for JavaScript
-* Handles views pretty well
+* Uses Self-like slots with getters/setters
+* Bind simple callback functions, rather than classes
+
+
+!SLIDE bullets incremental
+
+# jQuery weaknesses #
+
 * Still needs data-modeling support
-* Also bound to browser (lack of) concurrency
+* Also bound to browser concurrency (or lack thereof)
 
 
 !SLIDE bullets incremental
 
-# JS.now #
+# JavaScript.next() #
 
-* Web Workers
-* New storage tools (offline cache, localStorage)
-* Display widgets (A/V, canvas)
+* Concurrency
+* Better Syntax
 
 
 !SLIDE bullets incremental
 
-# Web Workers #
+# JavaScript concurrency: Web Workers #
 
 * Concurrent, sandboxed processes
 * Pass messages to and from calling page
@@ -167,27 +231,9 @@
 
 # Web Workers, cont. #
 
-* Function like actors/processes from Erlang
+* Function like processes from Erlang (but heavy-weight!)
 * No shared state, so you can't deadlock
-* Issues with payload formats across browsers
-
-
-!SLIDE
-
-# Trivial actor-based service #
-
-    @@@ Erlang
-    -module(doubler).
-    -export([spawn_worker/0, double/1]).
-
-    double() -> 
-        receive
-            Val -> Val * 2;
-        end.
-
-    spawn_worker() -> 
-        Pid = spawn(?MODULE, double, []).
-        Pid.
+* Available in Firefox, Safari, Chromium/Chrome, Opera
 
 
 !SLIDE
@@ -196,9 +242,11 @@
 
     @@@ JavaScript
     var worker = new WebWorker('doubler.js');
+
     worker.onMessage = function (event) {
         console.log(event.data.toString());
     }
+
     worker.postMessage("2");
 
 
@@ -209,6 +257,7 @@
     // doubler.js
     onMessage = function(event) {
         var data = event.data;
+
         if (data) {
             var number = Number(data);
             postMessage(number * 2);
@@ -216,9 +265,73 @@
     }
 
 
+!SLIDE 
+
+# New syntax: 'let' #
+
 !SLIDE bullets incremental
 
-# JS.future #
+# 'let' expressions
 
-* Destructuring
-* let bindings
+* Binds variables within the current _block_
+* Protects variables with the same name in outer blocks
+* Like 'letrec' in Scheme, 'my' in Perl
+* Available in JS 1.7 (i.e., only Firefox)
+
+
+!SLIDE
+
+    @@@ JavaScript
+    var x = 5;
+
+    if (true) {
+        let x = 6;
+        console.log(x); // => prints "6"
+    }
+
+    console.log(x); // => prints "5"
+
+
+!SLIDE bullets incremental
+
+# New syntax: Destructuring #
+
+* Called 'pattern matching' in Haskell, ML
+* Limited form (array/list unpacking) also in P* languages
+
+!SLIDE
+
+# Destructuring, cont. #
+
+    @@@ JavaScript
+    // array destructuring
+    var (a, b, c) = [1, 2, 3];
+
+    // object destructuring
+    var obj = {
+        name: "an object",
+        size: [10, 10]
+    };
+
+    var {name, size} = obj;
+
+
+!SLIDE bullets incremental
+
+# New syntax: miscellany
+
+* Generators, iterators
+* 'const' bindings
+* Modules
+* ...very little of it coming all that soon :(
+
+
+!SLIDE bullets incremental
+
+# Conclusions
+
+* JavaScript is actuall a cool language
+* Sadly, shackled to weak/inconsistent runtime 
+* Libraries are helping, but the language needs to evolve
+* Learning weird research langauges will help your JS coding
+

@@ -30,7 +30,12 @@ a:visited {
     color: #369;
 }
 
+pre {
+    background-color: #ccc;
+    color: #222;
+    padding: 0.25em;
+}
+
 pre.sh_sourceCode {
     background-color: #ccc;
 }
-
