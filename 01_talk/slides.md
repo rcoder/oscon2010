@@ -90,9 +90,9 @@
 
 # Other similarities #
 
-* weak standard library
-* many (incompatible) implementations
-* considered a "toy language" by many programmers
+* Weak standard library
+* Many (incompatible) implementations
+* Considered a "toy language" by many programmers
 
 
 !SLIDE bullets incremental
@@ -388,7 +388,7 @@
 
 # Conclusions
 
-* JavaScript is actuall a cool language
+* JavaScript is actually a cool language
 * Sadly, shackled to weak/inconsistent runtime 
 * Libraries are helping, but the language needs to evolve
 * Learning weird research langauges will help your JS coding
