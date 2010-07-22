@@ -18,7 +18,7 @@
 
 !SLIDE bullets incremental
 
-# History #
+# JavaScript History #
 
 * Created as LiveScript by Brendan Eich in 1995
 * Renamed + recast in a supporting role for Java
@@ -233,7 +233,7 @@
 
 # JavaScript concurrency: Web Workers #
 
-* Concurrent, sandboxed processes
+* Parallel, sandboxed processes
 * Pass messages to and from calling page
 * Unable to access the DOM, network, or filesystem
 
